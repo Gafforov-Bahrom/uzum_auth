@@ -8,6 +8,7 @@ type CreateUser struct {
 }
 
 type User struct {
+	Id                uint64
 	Role              string
 	Name              string
 	Surname           string
@@ -35,4 +36,9 @@ type CustomClaims struct {
 	jwt.StandardClaims
 	Login string `json:"username"`
 	Role  string `json:"role"`
+}
+
+type GetUserRoleOut struct {
+	Id   uint64
+	Role string
 }

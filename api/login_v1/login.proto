@@ -5,13 +5,32 @@ package login_v1;
 import "google/api/validate.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/Shemistan/uzum_auth/pkg/login_v1;login_v1";
+option go_package = "./login_v1";
 
 service LoginV1{
   rpc Login (Login.Request) returns (Login.Response);
   rpc GetRefreshToken (GetRefreshToken.Request) returns (GetRefreshToken.Response);
   rpc GetAccessToken (GetAccessToken.Request) returns (GetAccessToken.Response);
   rpc Check(Check.Request) returns (google.protobuf.Empty);
+  rpc GetUserId(GetUserIdRequest) returns (GetUserIdResponse);
+  rpc GetUserRole(GetUserRoleRequest) returns (GetUserRoleResponse);
+}
+
+message GetUserIdRequest {
+  string access_token = 1;
+}
+
+message GetUserIdResponse {
+  uint64 user_id = 1;
+}
+
+message GetUserRoleRequest {
+  string access_token = 1;
+}
+
+message GetUserRoleResponse {
+  uint64 user_id = 1;
+  string role = 2;
 }
 
 message Login {
